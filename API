@@ -1,1 +1,24 @@
+import requests
+import json
 
+cep = input('Digite seu cep: ')
+
+link = f'https://viacep.com.br/ws/{cep}/json/'
+
+requisicao = requests.get(link)
+
+dic_requisicao = requisicao.json()
+
+ibge = dic_requisicao['ibge']
+13040
+link = f'https://apiprevmet3.inmet.gov.br/estacao/proxima/{ibge}'
+
+requisicao = requests.get(link)
+
+dic_requisicao = requisicao.json()
+
+temperatura = requisicao.json()['dados']['TEM_INS']
+umidade = requisicao.json()['dados']['UMD_INS']
+
+print ('temperatura atual: ', temperatura)
+print ('Umidade atual: ', umidade)
